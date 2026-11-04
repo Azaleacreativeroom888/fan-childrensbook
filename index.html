@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>えほんのとびら | 絵本ファンサイト</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --orange:#f4a259;
+  --orange-deep:#c9691d;
+  --orange-soft:#ffe6c7;
+  --green:#a9cf5b;
+  --green-deep:#5c7f27;
+  --green-soft:#eaf5c9;
+  --paper:#fbfdf1;
+  --ink:#4b4030;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
+  background:var(--paper);color:var(--ink);line-height:1.9;font-size:16px;
+}
+a{color:inherit}
+a:focus-visible{outline:3px solid var(--orange-deep);outline-offset:3px;border-radius:6px}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+
+/* header */
+header{background:var(--green-soft);border-bottom:6px solid var(--green)}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;padding-top:14px;padding-bottom:14px}
+.logo{font-size:1.4rem;font-weight:700;text-decoration:none;color:var(--green-deep)}
+nav ul{display:flex;flex-wrap:wrap;gap:6px;list-style:none}
+nav a{display:block;padding:4px 16px;border-radius:999px;text-decoration:none;font-weight:500}
+nav a:hover{background:var(--orange-soft)}
+nav a[aria-current="page"]{background:var(--orange);color:#fff}
+
+/* hero: 開いた絵本 */
+.hero{padding:56px 0 40px;background:linear-gradient(var(--green-soft),var(--paper))}
+.book{
+  display:grid;grid-template-columns:1fr 1fr;max-width:760px;margin:0 auto;
+  border-radius:14px;box-shadow:0 10px 0 var(--green-deep);overflow:hidden;
+  border:5px solid var(--green-deep);background:#fff;
+}
+.page{padding:44px 32px;min-height:300px;display:flex;flex-direction:column;justify-content:center}
+.page.left{background:var(--orange-soft);border-right:3px dashed var(--orange);text-align:center}
+.page.left .sun{
+  width:96px;height:96px;border-radius:50%;background:var(--orange);margin:0 auto 18px;
+  box-shadow:0 0 0 12px #ffcf99;
+}
+.page.left p{font-weight:700;color:var(--orange-deep);font-size:1.05rem}
+.page.right{background:var(--green-soft)}
+.page.right h1{font-size:2rem;line-height:1.4;color:var(--green-deep);margin-bottom:12px}
+.page.right p{font-size:.95rem}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:32px}
+.btn{display:inline-block;padding:10px 26px;border-radius:999px;text-decoration:none;font-weight:700;border:3px solid var(--orange);background:var(--orange);color:#fff}
+.btn.alt{background:#fff;color:var(--orange-deep)}
+.btn:hover{transform:translateY(-2px)}
+
+/* sections */
+section{padding:48px 0}
+section h2{font-size:1.5rem;color:var(--orange-deep);margin-bottom:6px;display:inline-block;border-bottom:6px solid var(--green);line-height:1.5}
+.lead{margin:10px 0 24px}
+.more{margin-top:18px;text-align:right}
+.more a{font-weight:700;color:var(--green-deep)}
+
+.news{list-style:none;background:#fff;border:3px solid var(--orange-soft);border-radius:16px}
+.news li{display:flex;flex-wrap:wrap;gap:4px 18px;padding:14px 22px;border-bottom:2px dotted var(--orange-soft)}
+.news li:last-child{border-bottom:none}
+.news time{font-weight:700;color:var(--green-deep);min-width:6.5em}
+
+.ranking{list-style:none;display:grid;gap:12px}
+.ranking li{display:flex;align-items:center;gap:16px;background:var(--green-soft);border-radius:999px;padding:10px 24px 10px 12px}
+.ranking .no{flex:none;width:44px;height:44px;border-radius:50%;background:var(--orange);color:#fff;font-weight:700;display:grid;place-items:center}
+.ranking li:nth-child(n+2) .no{background:var(--green);color:var(--ink)}
+.ranking small{display:block;font-size:.8rem;opacity:.8;line-height:1.5}
+
+.shelf{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.frame{background:#fff;border:3px solid var(--green);border-radius:16px;padding:12px;text-decoration:none}
+.frame .art{aspect-ratio:4/3;border-radius:10px;display:grid;place-items:center;font-size:.9rem;color:var(--ink)}
+.frame:nth-child(1) .art{background:var(--orange-soft)}
+.frame:nth-child(2) .art{background:var(--green-soft)}
+.frame:nth-child(3) .art{background:#fff1b8}
+.frame p{padding:10px 4px 0;font-weight:500}
+
+.about-box{background:var(--orange-soft);border-radius:20px;padding:28px 32px}
+
+footer{background:var(--green);padding:28px 0;text-align:center;font-size:.9rem}
+footer p+p{margin-top:4px}
+
+@media (max-width:640px){
+  .book{grid-template-columns:1fr}
+  .page.left{border-right:none;border-bottom:3px dashed var(--orange);min-height:0}
+  .page{padding:32px 24px;min-height:0}
+  .ranking li{border-radius:24px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.btn:hover{transform:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="index.html">えほんのとびら</a>
+    <nav aria-label="メインメニュー">
+      <ul>
+        <li><a href="index.html" aria-current="page">ホーム</a></li>
+        <li><a href="blog.html">ブログ</a></li>
+        <li><a href="ranking.html">ランキング</a></li>
+        <li><a href="gallery.html">ギャラリー</a></li>
+        <li><a href="about.html">about</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div class="book">
+        <div class="page left">
+          <div class="sun" aria-hidden="true"></div>
+          <p>むかしむかし、あるところに…</p>
+        </div>
+        <div class="page right">
+          <h1>すきな絵本を、<br>みんなで語ろう。</h1>
+          <p>読んだ絵本の感想、お気に入りのランキング、ファンアートや二次創作を集めた絵本ファンサイトです。</p>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a class="btn" href="blog.html">ブログを読む</a>
+        <a class="btn alt" href="gallery.html">ギャラリーを見る</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="news">
+    <div class="wrap">
+      <h2>新しい更新</h2>
+      <p class="lead">ブログやギャラリーの最新情報です。</p>
+      <ul class="news">
+        <li><time datetime="2026-11-04">2026.11.04</time><span>サイトをオープンしました</span></li>
+        <li><time datetime="2026-11-04">2026.11.04</time><span>ブログ：はじめての絵本ノート</span></li>
+        <li><time datetime="2026-11-04">2026.11.04</time><span>ギャラリー：ファンアートの投稿をはじめました</span></li>
+      </ul>
+      <p class="more"><a href="blog.html">ブログをもっと読む</a></p>
+    </div>
+  </section>
+
+  <section id="ranking" style="background:#fff">
+    <div class="wrap">
+      <h2>お気に入りランキング</h2>
+      <p class="lead">管理人が選ぶ、何度も読み返したくなる絵本です。</p>
+      <ol class="ranking">
+        <li><span class="no">1</span><span>絵本のタイトルがここに入ります<small>ひとことコメント</small></span></li>
+        <li><span class="no">2</span><span>絵本のタイトルがここに入ります<small>ひとことコメント</small></span></li>
+        <li><span class="no">3</span><span>絵本のタイトルがここに入ります<small>ひとことコメント</small></span></li>
+      </ol>
+      <p class="more"><a href="ranking.html">ランキングをぜんぶ見る</a></p>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="wrap">
+      <h2>ギャラリー</h2>
+      <p class="lead">漫画のファンアートや二次創作を展示しています。</p>
+      <div class="shelf">
+        <a class="frame" href="gallery.html"><div class="art">ファンアート</div><p>作品タイトル</p></a>
+        <a class="frame" href="gallery.html"><div class="art">漫画</div><p>作品タイトル</p></a>
+        <a class="frame" href="gallery.html"><div class="art">二次創作</div><p>作品タイトル</p></a>
+      </div>
+      <p class="more"><a href="gallery.html">ギャラリーへ行く</a></p>
+    </div>
+  </section>
+
+  <section id="about" style="padding-top:0">
+    <div class="wrap">
+      <div class="about-box">
+        <h2>このサイトについて</h2>
+        <p class="lead" style="margin-bottom:0">絵本が好きな人のための、ゆるやかなファンサイトです。感想を書いたり、絵を描いたり、好きなものを好きと言える場所を目指しています。くわしくは <a href="about.html" style="font-weight:700;color:var(--green-deep)">aboutページ</a> へ。</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>&copy; 2026 えほんのとびら</p>
+    <p>当サイトは非公式のファンサイトです。作品の著作権は各権利者に帰属します。</p>
+  </div>
+</footer>
+
+</body>
+</html>
